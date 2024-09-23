@@ -75,6 +75,8 @@ const NewFile = () => {
   const deleteLab = useLabsStore(s => s.deleteLab)
   const currentLab = useLabStore(s => s.lab)
   const addQuestion = useLabStore(s => s.upsertQuestion)
+  const showLabWindow = useLabStore(s => s.showLabWindow)
+  const setShowLabWindow = useLabStore(s => s.setShowLabWindow)
 
   // Dynamic styling values for new project thumbnails
   // Will likely be extended to 'Your Projects' list
@@ -158,7 +160,10 @@ const NewFile = () => {
       
       // Set lab project for editor
       setProject(getLabProject(0))
-
+      
+      if (showLabWindow === false) {
+        setShowLabWindow(true)
+      }
       // Go to the editor
       navigate('/editor');
   };
@@ -166,6 +171,9 @@ const NewFile = () => {
   const handleLoadLab = (lab: StoredLab) => {
     setLab(lab)
     setProject(getLabProject(0))
+    if (showLabWindow === false) {
+      setShowLabWindow(true)
+    }
     navigate('/editor')
   };
 
