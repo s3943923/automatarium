@@ -13,6 +13,9 @@ import { Warning } from '/src/components/Warning/Warning'
 
 import favicon from 'bundle-text:/public/logo.svg'
 
+import { useLabsStore } from '/src/stores'
+import { lab } from '/src/test/labexample'
+
 // Set up goober to use React
 setup(
   createElement,
@@ -63,6 +66,24 @@ const App = () => {
   }
 
   useEgg()
+
+
+  // Lab logic to insert the lab only once
+  const upsertLab = useLabsStore((s) => s.upsertLab)
+  
+  useEffect(() => {
+    // Check if the lab has already been created once
+    const labCreatedOnce = localStorage.getItem('labCreatedOnce')
+
+    // If the lab has never been created (or the flag doesn't exist)
+    if (!labCreatedOnce) {
+      // Insert the lab into the Zustand store
+      upsertLab(lab)
+
+      // Set the "lab created" marker so it won't create again, even if deleted
+      localStorage.setItem('labCreatedOnce', 'true')
+    }
+  }, [upsertLab])
 
   return <>
     <Routes>
