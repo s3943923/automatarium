@@ -49,14 +49,16 @@ const Editor = () => {
     return null
   }
 
-  if (lab && getProjectinLab(project._id) === undefined) {
-    setLab(null)
-    setShowLabWindow(false)
-  }
-
-  if (lab == null) {
-    setShowLabWindow(false)
-  }
+  useEffect(() => {
+    if (lab && getProjectinLab(project._id) === undefined) {
+      setLab(null);
+      setShowLabWindow(false);
+    }
+  
+    if (lab == null) {
+      setShowLabWindow(false);
+    }
+  }, [lab, project, getProjectinLab]);
 
 
   const projectType = project.config.type
