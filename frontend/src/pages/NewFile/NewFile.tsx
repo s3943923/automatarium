@@ -128,11 +128,13 @@ const NewFile = () => {
 
 
   const handleNewFile = (type: ProjectType) => {
+    setShowLabWindow(false)
     setProject(createNewProject(type))
     navigate('/editor')
   }
 
   const handleLoadProject = (project: StoredProject) => {
+    setShowLabWindow(false)
     setProject(project)
     navigate('/editor')
   }
