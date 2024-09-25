@@ -117,9 +117,7 @@ const Editor = () => {
       <Menubar isSaving={isSaving} />
       <Content>
         <Toolbar />
-        if (showLabWindow && lab) { 
-          <LabWindow/>
-        }
+        {showLabWindow && lab && <LabWindow/>}
         <EditorContent>
           <EditorPanel />
           <BottomPanel />
