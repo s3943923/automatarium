@@ -54,6 +54,10 @@ const Editor = () => {
     setShowLabWindow(false)
   }
 
+  if (lab == null) {
+    setShowLabWindow(false)
+  }
+
 
   const projectType = project.config.type
 
@@ -113,8 +117,9 @@ const Editor = () => {
       <Menubar isSaving={isSaving} />
       <Content>
         <Toolbar />
-        {showLabWindow && lab && <LabWindow/>
-      }
+        if (showLabWindow && lab) { 
+          <LabWindow/>
+        }
         <EditorContent>
           <EditorPanel />
           <BottomPanel />
