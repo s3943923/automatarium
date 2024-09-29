@@ -107,7 +107,18 @@ const ModuleWindow = () => {
 
   // the change on button commands
   const [newQuestion, setNewQuestion] = useState('') 
-  
+
+  const scrollToQuestion = (index) => {
+    const element = document.getElementById(`question-${index}`);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center', // current one at center 
+      });
+    }
+  };
+
 
 
   return (
@@ -158,12 +169,16 @@ const ModuleWindow = () => {
 
             
           {/* test here */}  
-          <PaginationButton
-            onClick={() => handlePageChange(currentQuestionIndex - 1)}
-            disabled={currentQuestionIndex === 0}
-          >
-            &lt;
-          </PaginationButton>
+        <PaginationButton
+              onClick={() => {
+                const newIndex = currentQuestionIndex - 1;
+                handlePageChange(newIndex);
+                scrollToQuestion(newIndex);
+              }}
+              disabled={currentQuestionIndex === 0}
+            >
+              &lt;
+        </PaginationButton>
 
           {/* Scrollable container for question buttons */}
           <div style={{ display: 'flex', 
@@ -174,36 +189,39 @@ const ModuleWindow = () => {
                         }}>
             {Object.entries(questions).map(([id, _], index) => (
 
-              // this is quesion card
+              // this is question card list 
 
               <PaginationButton
                 key={id}
-                onClick={() => handlePageChange(index)}
+                onClick={() => {
+                  handlePageChange(index);
+                  scrollToQuestion(index); // Scroll to the clicked question
+                }}
+                id={`question-${index}`} // Unique ID for each button
                 style={{
                   margin: '0 5px', // Space between buttons
-                  whiteSpace: 'nowrap', // Prevent text wrap
-
-
-                  backgroundColor: index  === currentQuestionIndex ? 'gray' : 'var(--primary)', // Gray for current question
-                  border: index === currentQuestionIndex ? '1px solid white' : '1px solid transparent', // Highlight border for current question
-
-
+                  backgroundColor: index  === currentQuestionIndex ? 'gray' : 'var(--primary)', 
+                  border: index === currentQuestionIndex ? '1px solid white' : '1px solid transparent', 
 
                 }}
               >
                 Q{index + 1}
               </PaginationButton>
 
-
             ))}
           </div>
 
-          <PaginationButton
-            onClick={() => handlePageChange(currentQuestionIndex + 1)}
+        <PaginationButton
+            onClick={() =>{
+              const newIndex = currentQuestionIndex + 1;
+              handlePageChange(newIndex)
+              scrollToQuestion(newIndex);
+
+            }}
             disabled={currentQuestionIndex === totalQuestions - 1}
           >
             &gt;
-          </PaginationButton>
+        </PaginationButton>
 
             {/* test here */}
 
