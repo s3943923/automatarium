@@ -38,20 +38,20 @@ export const QuestionRow = styled('tr')`
   }
 `
 
-// Button for editing questions
-export const EditButton = styled('button')`
-  background-color: var(--primary);
-  color: white;
-  border: 1px solid transparent;
-  border-radius: 0.3rem;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;
+  // Button for editing questions
+  export const EditButton = styled('button')`
+    background-color: var(--primary);
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
 
-`
+  `
 
 // Button for removing questions
 export const RemoveButton = styled('button')`

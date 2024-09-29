@@ -103,17 +103,36 @@ const ModuleWindow = () => {
     </React.Fragment>
   ))
 
+
+
+  // the change on button commands
+  const [newQuestion, setNewQuestion] = useState('') 
+  
+
+
   return (
     <ModuleWindowWrapper ref={panelRef} width={panelWidth}>
       <CloseButton onClick={handleClose}>x</CloseButton>
       <div>
         <TitleWrapper>
+
+          
           <Title>Question {currentQuestionIndex + 1}</Title>
+          
           <EditButton $active={isEditing} onClick={handleEditClick}>
             {isEditing ? 'Save' : 'Edit'}
           </EditButton>
         </TitleWrapper>
         <hr />
+        {/* test here */}
+        <Title>Number of Questions: {Object.keys(questions).length}</Title>
+
+        {Object.keys(questions).length > 1 ? (
+          <Content>Yeah</Content>
+        ) : (
+          <Content>Nah</Content>
+        )}
+        {/* test here */}
         <Content>
           {isEditing
             ? (
@@ -130,27 +149,85 @@ const ModuleWindow = () => {
       </div>
 
       <PaginationWrapper>
-        <PaginationButton
-          onClick={() => handlePageChange(currentQuestionIndex - 1)}
-          disabled={currentQuestionIndex === 0}
-        >
-          &lt;
-        </PaginationButton>
+        {/* <PaginationButton
+            onClick={() => handlePageChange(currentQuestionIndex - 1)}
+            disabled={currentQuestionIndex === 0}
+          >
+            &lt;
+        </PaginationButton> */}
 
-        <SelectBox value={currentQuestionIndex} onChange={handleSelectChange}>
+            
+          {/* test here */}  
+          <PaginationButton
+            onClick={() => handlePageChange(currentQuestionIndex - 1)}
+            disabled={currentQuestionIndex === 0}
+          >
+            &lt;
+          </PaginationButton>
+
+          {/* Scrollable container for question buttons */}
+          <div style={{ display: 'flex', 
+                        overflowX: 'auto', 
+                        whiteSpace: 'nowrap' ,
+                        scrollbarWidth: 'none',
+                        scrollbarColor: 'var(--primary) #e0e0e0',
+                        }}>
+            {Object.entries(questions).map(([id, _], index) => (
+
+              // this is quesion card
+
+              <PaginationButton
+                key={id}
+                onClick={() => handlePageChange(index)}
+                style={{
+                  margin: '0 5px', // Space between buttons
+                  whiteSpace: 'nowrap', // Prevent text wrap
+
+
+                  backgroundColor: index  === currentQuestionIndex ? 'gray' : 'var(--primary)', // Gray for current question
+                  border: index === currentQuestionIndex ? '1px solid white' : '1px solid transparent', // Highlight border for current question
+
+
+
+                }}
+              >
+                Q{index + 1}
+              </PaginationButton>
+
+
+            ))}
+          </div>
+
+          <PaginationButton
+            onClick={() => handlePageChange(currentQuestionIndex + 1)}
+            disabled={currentQuestionIndex === totalQuestions - 1}
+          >
+            &gt;
+          </PaginationButton>
+
+            {/* test here */}
+
+
+
+
+
+        
+
+        {/* <SelectBox value={currentQuestionIndex} onChange={handleSelectChange}>
           {Object.entries(questions).map(([id], index) => (
             <option key={id} value={id}>
               Question {index + 1}
             </option>
           ))}
-        </SelectBox>
+        </SelectBox> */}
 
-        <PaginationButton
+
+        {/* <PaginationButton
           onClick={() => handlePageChange(currentQuestionIndex + 1)}
           disabled={currentQuestionIndex === totalQuestions - 1}
         >
           &gt;
-        </PaginationButton>
+        </PaginationButton> */}
       </PaginationWrapper>
       <ResizeHandle onMouseDown={handleMouseDown} />
     </ModuleWindowWrapper>

@@ -111,11 +111,11 @@ export const PaginationWrapper = styled('div')`
 export const PaginationButton = styled('button')`
   background-color: var(--primary);
   color: var(--white);
-  border: 1px solid var(--white);
-  padding: 0.2em 0.5rem;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.1rem;
   cursor: pointer;
   font-size: 14px;
-  border-radius: 0.3em;
+  border-radius: 0.3rem;
 
   &:hover {
     background-color: var(--white);
@@ -132,9 +132,9 @@ export const SelectBox = styled('select')`
   background-color: var(--surface);
   color: var(--white);
   border: 1px solid var(--white);
-  padding: 0.2em;
+  padding: 0.5rem 1rem;
   font-size: 14px;
-  border-radius: 0.3em;
+  border-radius: 0.3rem;
   cursor: pointer;
 
   &:hover {
