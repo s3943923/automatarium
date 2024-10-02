@@ -3602,6 +3602,11 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/classnames/-/classnames-1.2.2.tgz"
+  integrity sha512-aGuzgdoQvsYMu3gfdPyCqb0KadipwsvWTRlODYoLckoHCQHmIg7iyEiGpIVmi1odvqXD1ynokF00m5KEPoEwGg==
+
 cli-cursor@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/cli-cursor/-/cli-cursor-2.1.0.tgz"
@@ -7791,6 +7796,11 @@ markdown-table@^3.0.0:
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-3.0.3.tgz"
   integrity sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==
 
+marked@^0.3.3:
+  version "0.3.19"
+  resolved "https://registry.npmjs.org/marked/-/marked-0.3.19.tgz"
+  integrity sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg==
+
 marked@^13.0.2:
   version "13.0.3"
   resolved "https://registry.npmjs.org/marked/-/marked-13.0.3.tgz"
@@ -8634,6 +8644,11 @@ oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.npmjs.org/oauth-sign/-/oauth-sign-0.9.0.tgz"
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
+
+object-assign@^2.0.0:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/object-assign/-/object-assign-2.1.1.tgz"
+  integrity sha512-CdsOUYIh5wIiozhJ3rLQgmUTgcyzFwZZrqhkKhODMoGtPKM+wt0h0CNIoauJWMsS9822EdzPsF/6mb4nLvPN5g==
 
 object-assign@^4.1.1:
   version "4.1.1"
@@ -9806,6 +9821,16 @@ react-lottie-player@1.5.4:
     lottie-web "^5.7.6"
     rfdc "^1.3.0"
 
+react-markdown-textarea@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/react-markdown-textarea/-/react-markdown-textarea-1.0.1.tgz"
+  integrity sha512-+/X/8Bvk1j4ckvu1kQSoo63WCjsdQLDG+6i+v8bJvKLHUUZNtFpYZJPPWx6e5MZlrl9tn191xj8GSzmqcsfJPg==
+  dependencies:
+    classnames "^1.2.2"
+    marked "^0.3.3"
+    object-assign "^2.0.0"
+    react-textarea-autosize "^2.0.0"
+
 react-markdown@~9.0.1:
   version "9.0.1"
   resolved "https://registry.npmjs.org/react-markdown/-/react-markdown-9.0.1.tgz"
@@ -9850,7 +9875,12 @@ react-router@6.23.0:
   dependencies:
     "@remix-run/router" "1.16.0"
 
-"react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.5.1 || ^17.0.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^17.0.2, "react@>= 16.3", "react@>= 16.3.0", react@>=16.0.0, react@>=16.8, react@>=16.8.0, react@>=18, react@17.0.2:
+react-textarea-autosize@^2.0.0:
+  version "2.5.4"
+  resolved "https://registry.npmjs.org/react-textarea-autosize/-/react-textarea-autosize-2.5.4.tgz"
+  integrity sha512-sRJbDyLf1Ig8W+fpeiGsR/Iy499Xdx/zrmxC7WOC3R6JJluIQbbqA+h02W2Y72Hsr9LCOfaBvFVStEmZIJDIcw==
+
+"react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.5.1 || ^17.0.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^17.0.2, "react@>= 0.13.0 || ^0.14.0-alpha", "react@>= 16.3", "react@>= 16.3.0", react@>=0.13.0, react@>=16.0.0, react@>=16.8, react@>=16.8.0, react@>=18, react@17.0.2:
   version "17.0.2"
   resolved "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==

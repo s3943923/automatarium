@@ -97,6 +97,7 @@ export const Textarea = styled('textarea')`
   font-size: 14px;
   border-radius: 0.3em;
   transition: background 0.3s, color 0.3s;
+  resize: none;
 `
 
 export const PaginationWrapper = styled('div')`
@@ -112,7 +113,7 @@ export const PaginationButton = styled('button')`
   background-color: var(--primary);
   color: var(--white);
   border: 1px solid transparent;
-  padding: 0.6rem 1.1rem;
+  padding: 0.4rem 0.8rem;
   cursor: pointer;
   font-size: 14px;
   border-radius: 0.3rem;
@@ -142,3 +143,21 @@ export const SelectBox = styled('select')`
     color: var(--toolbar);
   }
 `
+
+
+export const QuestionButton = styled(PaginationButton)`
+  flex-shrink: 0; /* Prevent shrinking */
+`;
+
+export const ScrollableContainer = styled('test')`
+display: flex;
+overflow-x: auto; /* Enable horizontal scrolling */
+white-space: nowrap; /* Prevent text wrap */
+scrollbar-width: thin; /* For Firefox: thin scrollbar */
+
+/* Hide scrollbar for WebKit browsers */
+&::-webkit-scrollbar {
+  display: none;
+}
+`
+
