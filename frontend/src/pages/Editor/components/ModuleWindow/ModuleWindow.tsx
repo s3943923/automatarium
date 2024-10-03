@@ -12,7 +12,11 @@ import {
   Title,
   EditButton,
   Content
+  // displayArea
 } from './moduleWindowStyling'
+
+import ReactMarkdown from 'react-markdown';
+
 
 
 const ModuleWindow = () => {
@@ -83,10 +87,13 @@ const ModuleWindow = () => {
     const lines = inputValue.split('\n'); 
     setQuestion(e.target.value)
 
-    const limitedLines = lines.map(line => {
-      return line.length > 50 ? line.substring(0, 50) : line;
-    });
-    setQuestion(limitedLines.join('\n')); 
+    // input length limit
+    // const limitedLines = lines.map(line => {
+    //   return line.length > 50 ? line.substring(0, 50) : line;
+    // });
+    // setQuestion(limitedLines.join('\n')); 
+
+    setQuestion(inputValue);
   }
 
   const handlePageChange = (index: number) => {
@@ -103,15 +110,29 @@ const ModuleWindow = () => {
   if (!questions || totalQuestions === 0 || !currentModule) {
     return <ModuleWindowWrapper width={panelWidth}>Loading module instructions...</ModuleWindowWrapper>
   }
+  // out put controls 
+  // const formattedInstructions = question.split('\n').map((line, index) => (
+  //   <React.Fragment key={index}>
+  //     {line}
+  //     <br />
+  //   </React.Fragment>
+  // ))
 
-  const formattedInstructions = question.split('\n').map((line, index) => (
-    <React.Fragment key={index}>
-      {line}
-      <br />
-    </React.Fragment>
-  ))
+  // const MarkdownDisplay = ({ question }) => {
+  //   const formattedInstructions = question.replace(/\n/g, '\n\n');
+  //   return (
+  //     <div>
+  //       <h3>Instructions:</h3>
+  //       <ReactMarkdown>{formattedInstructions}</ReactMarkdown>
+  //     </div>
+  //   );
+  // }
 
-
+  // const formattedInstructions = (
+  //   <div>
+  //     <ReactMarkdown>{question}</ReactMarkdown>
+  //   </div>
+  // );
 
   // the change on button commands
   const [newQuestion, setNewQuestion] = useState('') 
@@ -140,7 +161,7 @@ const ModuleWindow = () => {
         <TitleWrapper>
 
           
-          <Title>Question {currentQuestionIndex + 1}</Title>
+          <Title>Question {currentQuestionIndex + 1} /  {Object.keys(questions).length}</Title>
           
           <EditButton $active={isEditing} onClick={handleEditClick}>
             {isEditing ? 'Save' : 'Edit'}
@@ -148,15 +169,9 @@ const ModuleWindow = () => {
         </TitleWrapper>
         <hr />
         {/* test here */}
-        <Title>Number of Questions: {Object.keys(questions).length}</Title>
+     
 
-        {Object.keys(questions).length > 1 ? (
-          <Content>Yeah</Content>
-        ) : (
-          <Content>Nah</Content>
-        )}
-        {/* test here */}
-        <Content>
+        <Content  >
           {isEditing
             ? (
             <Textarea
@@ -165,14 +180,46 @@ const ModuleWindow = () => {
               style={{ height: '60vh' }} 
               placeholder="Edit module instructions here"
             />
-              )
-            : (
-            <>{formattedInstructions}</>
+            ): (
+              <div style={{
+
+                width: '100%',
+                height: '60vh',
+                backgroundColor: 'var(--surface)', // 与 Textarea 的背景相同
+                color: 'var(--white)', // 与 Textarea 的文本颜色相同
+                border: '1px solid var(--white)', // 与 Textarea 的边框相同
+                padding: '1px', // 与 Textarea 的内边距相同
+                borderRadius: '0.3em', // 与 Textarea 的圆角相同
+                overflowY: 'scroll', // 允许滚动
+                // whiteSpace: 'pre-wrap',
+                scrollbarWidth: 'thin', // Firefox 仅支持
+                scrollbarColor: 'var(--gray) var(--surface)', // Firefox 仅支持
+                textAlign: 'left', // Align text to the left
+                // display: 'flex', // Enable flexbox
+                flexDirection: 'column', // Align children in a column
+                // justifyContent: 'flex-start', // Align items to the start of the container
+                // alignItems: 'flex-start', // Align items to the left
+                lineHeight : '2em'
+
+              }}>
+             
+                <ReactMarkdown>
+                  {question}
+                </ReactMarkdown>
+
+                  {/* {formattedInstructions} */}
+              </div>
               )}
         </Content>
       </div>
 
       <PaginationWrapper>
+
+
+        <div>     {/* the scrollable ver   */}
+
+
+   
         {/* <PaginationButton
             onClick={() => handlePageChange(currentQuestionIndex - 1)}
             disabled={currentQuestionIndex === 0}
@@ -237,7 +284,7 @@ const ModuleWindow = () => {
           >
             &gt;
         </PaginationButton> */}
-
+     </div>
 
 
 
