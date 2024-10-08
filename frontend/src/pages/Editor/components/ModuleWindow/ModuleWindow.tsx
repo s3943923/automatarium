@@ -301,7 +301,7 @@ const ModuleWindow = () => {
         style={{
           backgroundColor: currentQuestionIndex > 0 ? 'var(--primary)' : 'transparent',
           margin: '0 2px',
-          flex: 1,
+          flex: 0,
         }}
       >
         &lt;
@@ -312,64 +312,64 @@ const ModuleWindow = () => {
         style={{
           backgroundColor: 'var(--primary)',
           margin: '0 2px',
-          flex: 1,
+          flex: 0,
+          
         }}
       >
         Q{currentQuestionIndex}
       </PaginationButton>
         ) : (
-          <div style={{ flex: 1 }}></div> // Empty space when no previous question
+          <div style={{ flex: 0 }}></div> // Empty space when no previous question
         )}
 
 
 
-{/*   current button  */}
-
+      {/*   current button  */}
       <PaginationButton
         disabled
         style={{
           backgroundColor: 'gray',
           margin: '0 2px',
-          flex: 1,
+          flex: 0,
         }}
       >
         Q{currentQuestionIndex + 1}
       </PaginationButton>
 
 
-        {/* Next question button (only if exists) */}
+      {/* Next question button (only if exists) */}
       {currentQuestionIndex < totalQuestions - 1 ? (
         <PaginationButton
           onClick={() => handlePageChange(currentQuestionIndex + 1)}
           style={{
             backgroundColor: 'var(--primary)',
             margin: '0 2px',
-            flex: 1,
+            flex: 0,
           }}
         >
           Q{currentQuestionIndex + 2}
         </PaginationButton>
       ) : (
-        <div style={{ flex: 1 }}></div> // Empty space when no next question
+        <div style={{ flex: 0 }}></div> // Empty space when no next question
       )}
 
 
 
 
-<PaginationButton
-  onClick={() => {
-    if (currentQuestionIndex < totalQuestions - 1) {
-      const newIndex = currentQuestionIndex + 1;
-      handlePageChange(newIndex);
-    }
-  }}
-  disabled={currentQuestionIndex === totalQuestions - 1}
-  style={{
-    backgroundColor: currentQuestionIndex < totalQuestions - 1 ? 'var(--primary)' : 'transparent',
-    margin: '0 2px',
-    flex: 1,
-  }}
->
+  <PaginationButton
+    onClick={() => {
+      if (currentQuestionIndex < totalQuestions - 1) {
+        const newIndex = currentQuestionIndex + 1;
+        handlePageChange(newIndex);
+      }
+    }}
+    disabled={currentQuestionIndex === totalQuestions - 1}
+    style={{
+      backgroundColor: currentQuestionIndex < totalQuestions - 1 ? 'var(--primary)' : 'transparent',
+      margin: '0 2px',
+      flex: 0,
+    }}
+  >
   &gt;
 </PaginationButton>
               {/* test here */}

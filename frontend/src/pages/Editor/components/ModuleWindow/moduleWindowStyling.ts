@@ -117,6 +117,7 @@ export const PaginationButton = styled('button')`
   cursor: pointer;
   font-size: 14px;
   border-radius: 0.3rem;
+  width: 60px;
 
   &:hover {
     background-color: var(--white);
