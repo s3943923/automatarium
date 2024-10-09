@@ -17,9 +17,27 @@ import {
 
 import ReactMarkdown from 'react-markdown';
 
+import rehypeSanitize from 'rehype-sanitize';
+const sanitizeOptions = {
+  tagNames: ['p', 'a', 'strong', 'em', 'ul', 'ol', 'li'], // Allowed tags
+  attributes: {
+      a: ['href', 'title'], // Allowed attributes for <a>
+  },
+};
+import { unified } from 'unified';
+import parse from 'rehype-parse';
+import rehypeStringify from 'rehype-stringify';
 
 
 const ModuleWindow = () => {
+  const sanitizeOptions = {
+    tagNames: ['p', 'a', 'strong', 'em', 'ul', 'ol', 'li'], 
+    attributes: {
+        a: ['href', 'title'], 
+    },
+  };
+
+  
   const currentModule = useModuleStore(s => s.module)
   const updateQuestion = useModuleStore(s => s.upsertQuestion)
   const updateProject = useModuleStore(s => s.upsertProject)
@@ -203,9 +221,10 @@ const ModuleWindow = () => {
 
               }}>
              
-                <ReactMarkdown>
+             <ReactMarkdown rehypePlugins={[rehypeSanitize]}>
                   {question}
-                </ReactMarkdown>
+              </ReactMarkdown>
+      
 
                   {/* {formattedInstructions} */}
               </div>

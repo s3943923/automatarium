@@ -42,8 +42,12 @@
     "katex": "^0.16.11",
     "marked": "^14.1.2",
     "mermaid": "^11.2.1",
+    "react-katex": "^3.0.1",
     "react-markdown": "^8.0.0",
     "react-markdown-textarea": "^1.0.1",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": "^15.5.0",
+    "rehype-katex": "^7.0.1",
+    "rehype-sanitize": "^6.0.0",
+    "remark-math": "^6.0.0"
   }
 }
