@@ -89,16 +89,37 @@ export const Content = styled('div')`
 
 export const Textarea = styled('textarea')`
   width: 100%;
-  height: 500px;
-  background-color: var(--surface);
+  height: 70vh;
+  background-color:rgb(65 65 65) ;
   color: var(--white);
-  border: 1px solid var(--white);
+  // border: 1px solid var(--white);
+  border : transparent;
   padding: 2px;
   font-size: 14px;
   border-radius: 0.3em;
   transition: background 0.3s, color 0.3s;
   resize: none;
 `
+
+export const TextArea = styled('Textarea')`
+  
+//   width: 150%;
+//   padding: 0.6rem;
+//   font-size: 1rem;
+//   border: 1px solid var(--border);
+//   border-radius: 0.3rem;
+//   margin-bottom: 0.8rem;
+//   box-sizing: border-box;
+//   background-color: gray;
+  
+//   color: white; 
+//   resize: none;
+
+//   &:focus {
+//     outline: none;
+//     border-color: var(--primary); 
+//   }
+// `
 
 export const PaginationWrapper = styled('div')`
   display: flex;

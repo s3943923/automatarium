@@ -24,10 +24,6 @@ const sanitizeOptions = {
       a: ['href', 'title'], // Allowed attributes for <a>
   },
 };
-import { unified } from 'unified';
-import parse from 'rehype-parse';
-import rehypeStringify from 'rehype-stringify';
-
 
 const ModuleWindow = () => {
   const sanitizeOptions = {
@@ -119,39 +115,13 @@ const ModuleWindow = () => {
     setProject(currentModule.projects[index])
   }
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedQuestionIndex = parseInt(e.target.value, 10)
-    handlePageChange(selectedQuestionIndex)
-  }
+  
 
   // If there are no questions or module data yet, show a loading or fallback message
   if (!questions || totalQuestions === 0 || !currentModule) {
     return <ModuleWindowWrapper width={panelWidth}>Loading module instructions...</ModuleWindowWrapper>
   }
-  // out put controls 
-  // const formattedInstructions = question.split('\n').map((line, index) => (
-  //   <React.Fragment key={index}>
-  //     {line}
-  //     <br />
-  //   </React.Fragment>
-  // ))
-
-  // const MarkdownDisplay = ({ question }) => {
-  //   const formattedInstructions = question.replace(/\n/g, '\n\n');
-  //   return (
-  //     <div>
-  //       <h3>Instructions:</h3>
-  //       <ReactMarkdown>{formattedInstructions}</ReactMarkdown>
-  //     </div>
-  //   );
-  // }
-
-  // const formattedInstructions = (
-  //   <div>
-  //     <ReactMarkdown>{question}</ReactMarkdown>
-  //   </div>
-  // );
-
+ 
   // the change on button commands
   const [newQuestion, setNewQuestion] = useState('') 
 
@@ -165,10 +135,6 @@ const ModuleWindow = () => {
       });
     }
   };
-
-  // test 2 
-
-
 
 
 
@@ -186,128 +152,27 @@ const ModuleWindow = () => {
           </EditButton>
         </TitleWrapper>
         <hr />
-        {/* test here */}
-     
-
         <Content  >
           {isEditing
             ? (
-            <Textarea
+              
+            <Textarea           
               value={question}
               onChange={handleQuestionChange}
-              style={{ height: '60vh' }} 
+
               placeholder="Edit module instructions here"
             />
             ): (
-              <div style={{
-
-                width: '100%',
-                height: '60vh',
-                backgroundColor: 'var(--surface)', // 与 Textarea 的背景相同
-                color: 'var(--white)', // 与 Textarea 的文本颜色相同
-                border: '1px solid var(--white)', // 与 Textarea 的边框相同
-                padding: '1px', // 与 Textarea 的内边距相同
-                borderRadius: '0.3em', // 与 Textarea 的圆角相同
-                overflowY: 'scroll', // 允许滚动
-                // whiteSpace: 'pre-wrap',
-                scrollbarWidth: 'thin', // Firefox 仅支持
-                scrollbarColor: 'var(--gray) var(--surface)', // Firefox 仅支持
-                textAlign: 'left', // Align text to the left
-                // display: 'flex', // Enable flexbox
-                flexDirection: 'column', // Align children in a column
-                // justifyContent: 'flex-start', // Align items to the start of the container
-                // alignItems: 'flex-start', // Align items to the left
-                lineHeight : '2em'
-
-              }}>
+              <div>
              
-             <ReactMarkdown rehypePlugins={[rehypeSanitize]}>
-                  {question}
-              </ReactMarkdown>
-      
-
-                  {/* {formattedInstructions} */}
+                <ReactMarkdown rehypePlugins={[rehypeSanitize]}>
+                    {question}
+                </ReactMarkdown>
               </div>
-              )}
+            )}
         </Content>
       </div>
-
       <PaginationWrapper>
-
-
-        <div>     {/* the scrollable ver   */}
-
-
-   
-        {/* <PaginationButton
-            onClick={() => handlePageChange(currentQuestionIndex - 1)}
-            disabled={currentQuestionIndex === 0}
-          >
-            &lt;
-        </PaginationButton> */}
-
-
-
-            
-          {/* test here */}  
-        {/* <PaginationButton
-              onClick={() => {
-                const newIndex = currentQuestionIndex - 1;
-                handlePageChange(newIndex);
-                scrollToQuestion(newIndex);
-              }}
-              disabled={currentQuestionIndex === 0}
-            >
-              &lt;
-        </PaginationButton> */}
-
-          {/* Scrollable container for question buttons */}
-          {/* <div style={{ display: 'flex', 
-                        overflowX: 'auto', 
-                        whiteSpace: 'nowrap' ,
-                        scrollbarWidth: 'none',
-                        scrollbarColor: 'var(--primary) #e0e0e0',
-                        }}>
-            {Object.entries(questions).map(([id, _], index) => (
-
-              // this is question card list 
-
-              <PaginationButton
-                key={id}
-                onClick={() => {
-                  handlePageChange(index);
-                  scrollToQuestion(index); // Scroll to the clicked question
-                }}
-                id={`question-${index}`} // Unique ID for each button
-                style={{
-                  margin: '0 5px', // Space between buttons
-                  backgroundColor: index  === currentQuestionIndex ? 'gray' : 'var(--primary)', 
-                  border: index === currentQuestionIndex ? '1px solid white' : '1px solid transparent', 
-
-                }}
-              >
-                Q{index + 1}
-              </PaginationButton>
-
-            ))}
-          </div> */}
-
-        {/* <PaginationButton
-            onClick={() =>{
-              const newIndex = currentQuestionIndex + 1;
-              handlePageChange(newIndex)
-              scrollToQuestion(newIndex);
-
-            }}
-            disabled={currentQuestionIndex === totalQuestions - 1}
-          >
-            &gt;
-        </PaginationButton> */}
-     </div>
-
-
-
-
 
       <PaginationButton
         onClick={() => {
@@ -340,10 +205,6 @@ const ModuleWindow = () => {
         ) : (
           <div style={{ flex: 0 }}></div> // Empty space when no previous question
         )}
-
-
-
-      {/*   current button  */}
       <PaginationButton
         disabled
         style={{
@@ -355,8 +216,6 @@ const ModuleWindow = () => {
         Q{currentQuestionIndex + 1}
       </PaginationButton>
 
-
-      {/* Next question button (only if exists) */}
       {currentQuestionIndex < totalQuestions - 1 ? (
         <PaginationButton
           onClick={() => handlePageChange(currentQuestionIndex + 1)}
@@ -371,9 +230,6 @@ const ModuleWindow = () => {
       ) : (
         <div style={{ flex: 0 }}></div> // Empty space when no next question
       )}
-
-
-
 
   <PaginationButton
     onClick={() => {
@@ -391,25 +247,6 @@ const ModuleWindow = () => {
   >
   &gt;
 </PaginationButton>
-              {/* test here */}
-
-
-
-        {/* <SelectBox value={currentQuestionIndex} onChange={handleSelectChange}>
-          {Object.entries(questions).map(([id], index) => (
-            <option key={id} value={id}>
-              Question {index + 1}
-            </option>
-          ))}
-        </SelectBox> */}
-
-
-        {/* <PaginationButton
-          onClick={() => handlePageChange(currentQuestionIndex + 1)}
-          disabled={currentQuestionIndex === totalQuestions - 1}
-        >
-          &gt;
-        </PaginationButton> */}
       </PaginationWrapper>
       <ResizeHandle onMouseDown={handleMouseDown} />
     </ModuleWindowWrapper>
